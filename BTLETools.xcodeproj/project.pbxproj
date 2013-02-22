@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B0072F46150912B100C96ADC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0072F45150912B100C96ADC /* UIKit.framework */; };
+		B0072F48150912B100C96ADC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0072F47150912B100C96ADC /* Foundation.framework */; };
+		B0072F4A150912B100C96ADC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0072F49150912B100C96ADC /* CoreGraphics.framework */; };
+		B0072F50150912B100C96ADC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0072F4E150912B100C96ADC /* InfoPlist.strings */; };
+		B0072F52150912B100C96ADC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0072F51150912B100C96ADC /* main.m */; };
+		B0072F56150912B100C96ADC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0072F55150912B100C96ADC /* AppDelegate.m */; };
+		B0072F63150912CA00C96ADC /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0072F62150912CA00C96ADC /* CoreBluetooth.framework */; };
+		B02F512A15553A4F00C0F6E1 /* Icon-iPad-Spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B02F512415553A4F00C0F6E1 /* Icon-iPad-Spotlight.png */; };
+		B02F512B15553A4F00C0F6E1 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B02F512515553A4F00C0F6E1 /* Icon-iPad.png */; };
+		B02F512C15553A4F00C0F6E1 /* Icon-iPhone-Spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B02F512615553A4F00C0F6E1 /* Icon-iPhone-Spotlight.png */; };
+		B02F512D15553A4F00C0F6E1 /* Icon-Retina-Spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B02F512715553A4F00C0F6E1 /* Icon-Retina-Spotlight.png */; };
+		B02F512E15553A4F00C0F6E1 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B02F512815553A4F00C0F6E1 /* Icon.png */; };
+		B02F512F15553A4F00C0F6E1 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B02F512915553A4F00C0F6E1 /* Icon@2x.png */; };
+		B053F6A41534B46500DD1047 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A21534B46500DD1047 /* DeviceViewController.m */; };
+		B053F6A51534B46500DD1047 /* DeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B053F6A31534B46500DD1047 /* DeviceViewController.xib */; };
+		B053F6A91534B90C00DD1047 /* BTLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A81534B90C00DD1047 /* BTLEDevice.m */; };
+		B0542A591663557C001A7048 /* VersusTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0542A571663557C001A7048 /* VersusTestViewController.m */; };
+		B0542A5A1663557C001A7048 /* VersusTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0542A581663557C001A7048 /* VersusTestViewController.xib */; };
+		B09791F51535698500AAD130 /* CharacteristicViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09791F31535698500AAD130 /* CharacteristicViewControllerViewController.m */; };
+		B09791F915356A5200AAD130 /* CharacteristicViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B09791F815356A5200AAD130 /* CharacteristicViewControllerViewController.xib */; };
+		B099ECC51661024B00D6EDDA /* icon-iPad-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B099ECC41661024A00D6EDDA /* icon-iPad-retina.png */; };
+		B099ECDD1661046500D6EDDA /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B099ECD61661046200D6EDDA /* Default-Landscape~ipad.png */; };
+		B099ECE01661046500D6EDDA /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B099ECD91661046300D6EDDA /* Default-Portrait~ipad.png */; };
+		B099ECE41661049700D6EDDA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B099ECE21661049700D6EDDA /* Default.png */; };
+		B099ECE51661049700D6EDDA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B099ECE31661049700D6EDDA /* Default@2x.png */; };
+		B099ECEC1661064400D6EDDA /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B099ECEA1661064400D6EDDA /* Default-Landscape@2x~ipad.png */; };
+		B099ECED1661064400D6EDDA /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B099ECEB1661064400D6EDDA /* Default-Portrait@2x~ipad.png */; };
+		B0B5FAE11534A90700701B76 /* ServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B5FAE01534A90700701B76 /* ServicesViewController.m */; };
+		B0B5FAE41534A95E00701B76 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B5FAE31534A95E00701B76 /* DevicesViewController.m */; };
+		B0DADADF16545131001C59FA /* characteristics.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0DADADD16545131001C59FA /* characteristics.strings */; };
+		B0DADAE016545131001C59FA /* services.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0DADADE16545131001C59FA /* services.strings */; };
+		B0DADAE816545585001C59FA /* CBService+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DADAE716545585001C59FA /* CBService+Description.m */; };
+		B0DADAF21654594D001C59FA /* CBCharacteristic+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */; };
+		B0F4A55016D797ED003DF071 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F4A54F16D797ED003DF071 /* libFlurryAnalytics.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B0072F41150912B100C96ADC /* BTLETools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTLETools.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0072F45150912B100C96ADC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B0072F47150912B100C96ADC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B0072F49150912B100C96ADC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B0072F4D150912B100C96ADC /* BTLETools-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BTLETools-Info.plist"; sourceTree = "<group>"; };
+		B0072F4F150912B100C96ADC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B0072F51150912B100C96ADC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B0072F53150912B100C96ADC /* BTLETools-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BTLETools-Prefix.pch"; sourceTree = "<group>"; };
+		B0072F54150912B100C96ADC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B0072F55150912B100C96ADC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B0072F62150912CA00C96ADC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		B02F512415553A4F00C0F6E1 /* Icon-iPad-Spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad-Spotlight.png"; path = "Resources/Icon-iPad-Spotlight.png"; sourceTree = "<group>"; };
+		B02F512515553A4F00C0F6E1 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources/Icon-iPad.png"; sourceTree = "<group>"; };
+		B02F512615553A4F00C0F6E1 /* Icon-iPhone-Spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPhone-Spotlight.png"; path = "Resources/Icon-iPhone-Spotlight.png"; sourceTree = "<group>"; };
+		B02F512715553A4F00C0F6E1 /* Icon-Retina-Spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Retina-Spotlight.png"; path = "Resources/Icon-Retina-Spotlight.png"; sourceTree = "<group>"; };
+		B02F512815553A4F00C0F6E1 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		B02F512915553A4F00C0F6E1 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
+		B053F6A11534B46500DD1047 /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
+		B053F6A21534B46500DD1047 /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
+		B053F6A31534B46500DD1047 /* DeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceViewController.xib; sourceTree = "<group>"; };
+		B053F6A71534B90C00DD1047 /* BTLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEDevice.h; sourceTree = "<group>"; };
+		B053F6A81534B90C00DD1047 /* BTLEDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEDevice.m; sourceTree = "<group>"; };
+		B0542A561663557C001A7048 /* VersusTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersusTestViewController.h; path = TestVCs/VersusTestViewController.h; sourceTree = "<group>"; };
+		B0542A571663557C001A7048 /* VersusTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VersusTestViewController.m; path = TestVCs/VersusTestViewController.m; sourceTree = "<group>"; };
+		B0542A581663557C001A7048 /* VersusTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VersusTestViewController.xib; path = TestVCs/VersusTestViewController.xib; sourceTree = "<group>"; };
+		B0542A5C1663596F001A7048 /* CharacteristicDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacteristicDelegate.h; sourceTree = "<group>"; };
+		B09791F21535698500AAD130 /* CharacteristicViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicViewControllerViewController.h; sourceTree = "<group>"; };
+		B09791F31535698500AAD130 /* CharacteristicViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicViewControllerViewController.m; sourceTree = "<group>"; };
+		B09791F815356A5200AAD130 /* CharacteristicViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacteristicViewControllerViewController.xib; sourceTree = "<group>"; };
+		B099ECC41661024A00D6EDDA /* icon-iPad-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-iPad-retina.png"; path = "Resources/icon-iPad-retina.png"; sourceTree = "<group>"; };
+		B099ECD61661046200D6EDDA /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
+		B099ECD91661046300D6EDDA /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = SOURCE_ROOT; };
+		B099ECE21661049700D6EDDA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		B099ECE31661049700D6EDDA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		B099ECEA1661064400D6EDDA /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = SOURCE_ROOT; };
+		B099ECEB1661064400D6EDDA /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = SOURCE_ROOT; };
+		B0B5FADF1534A90700701B76 /* ServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesViewController.h; sourceTree = "<group>"; };
+		B0B5FAE01534A90700701B76 /* ServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesViewController.m; sourceTree = "<group>"; };
+		B0B5FAE21534A95E00701B76 /* DevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesViewController.h; sourceTree = "<group>"; };
+		B0B5FAE31534A95E00701B76 /* DevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesViewController.m; sourceTree = "<group>"; };
+		B0DADADD16545131001C59FA /* characteristics.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = characteristics.strings; path = Resources/characteristics.strings; sourceTree = "<group>"; };
+		B0DADADE16545131001C59FA /* services.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = services.strings; path = Resources/services.strings; sourceTree = "<group>"; };
+		B0DADAE616545585001C59FA /* CBService+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBService+Description.h"; sourceTree = "<group>"; };
+		B0DADAE716545585001C59FA /* CBService+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBService+Description.m"; sourceTree = "<group>"; };
+		B0DADAF01654594D001C59FA /* CBCharacteristic+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBCharacteristic+Description.h"; sourceTree = "<group>"; };
+		B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBCharacteristic+Description.m"; sourceTree = "<group>"; };
+		B0F4A54E16D797ED003DF071 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		B0F4A54F16D797ED003DF071 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0072F3E150912B100C96ADC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0072F63150912CA00C96ADC /* CoreBluetooth.framework in Frameworks */,
+				B0072F46150912B100C96ADC /* UIKit.framework in Frameworks */,
+				B0072F48150912B100C96ADC /* Foundation.framework in Frameworks */,
+				B0072F4A150912B100C96ADC /* CoreGraphics.framework in Frameworks */,
+				B0F4A55016D797ED003DF071 /* libFlurryAnalytics.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B0072F36150912B100C96ADC = {
+			isa = PBXGroup;
+			children = (
+				B0F4A54D16D797ED003DF071 /* FlurryAnalytics */,
+				B0072F4B150912B100C96ADC /* BTLETest */,
+				B0072F44150912B100C96ADC /* Frameworks */,
+				B0072F42150912B100C96ADC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B0072F42150912B100C96ADC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0072F41150912B100C96ADC /* BTLETools.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0072F44150912B100C96ADC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0072F62150912CA00C96ADC /* CoreBluetooth.framework */,
+				B0072F45150912B100C96ADC /* UIKit.framework */,
+				B0072F47150912B100C96ADC /* Foundation.framework */,
+				B0072F49150912B100C96ADC /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B0072F4B150912B100C96ADC /* BTLETest */ = {
+			isa = PBXGroup;
+			children = (
+				B02F512315553A4100C0F6E1 /* Resources */,
+				B0072F54150912B100C96ADC /* AppDelegate.h */,
+				B0072F55150912B100C96ADC /* AppDelegate.m */,
+				B0072F4C150912B100C96ADC /* Supporting Files */,
+				B0B5FADF1534A90700701B76 /* ServicesViewController.h */,
+				B0B5FAE01534A90700701B76 /* ServicesViewController.m */,
+				B09791F21535698500AAD130 /* CharacteristicViewControllerViewController.h */,
+				B09791F31535698500AAD130 /* CharacteristicViewControllerViewController.m */,
+				B09791F815356A5200AAD130 /* CharacteristicViewControllerViewController.xib */,
+				B0542A5C1663596F001A7048 /* CharacteristicDelegate.h */,
+				B0B5FAE21534A95E00701B76 /* DevicesViewController.h */,
+				B0B5FAE31534A95E00701B76 /* DevicesViewController.m */,
+				B053F6A11534B46500DD1047 /* DeviceViewController.h */,
+				B053F6A21534B46500DD1047 /* DeviceViewController.m */,
+				B053F6A31534B46500DD1047 /* DeviceViewController.xib */,
+				B053F6A71534B90C00DD1047 /* BTLEDevice.h */,
+				B053F6A81534B90C00DD1047 /* BTLEDevice.m */,
+				B0DADAE616545585001C59FA /* CBService+Description.h */,
+				B0DADAE716545585001C59FA /* CBService+Description.m */,
+				B0DADAF01654594D001C59FA /* CBCharacteristic+Description.h */,
+				B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */,
+				B0542A561663557C001A7048 /* VersusTestViewController.h */,
+				B0542A571663557C001A7048 /* VersusTestViewController.m */,
+				B0542A581663557C001A7048 /* VersusTestViewController.xib */,
+			);
+			path = BTLETest;
+			sourceTree = "<group>";
+		};
+		B0072F4C150912B100C96ADC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0072F4D150912B100C96ADC /* BTLETools-Info.plist */,
+				B0072F4E150912B100C96ADC /* InfoPlist.strings */,
+				B0072F51150912B100C96ADC /* main.m */,
+				B0072F53150912B100C96ADC /* BTLETools-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B02F512315553A4100C0F6E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0DADADD16545131001C59FA /* characteristics.strings */,
+				B0DADADE16545131001C59FA /* services.strings */,
+				B099ECD61661046200D6EDDA /* Default-Landscape~ipad.png */,
+				B099ECD91661046300D6EDDA /* Default-Portrait~ipad.png */,
+				B099ECEA1661064400D6EDDA /* Default-Landscape@2x~ipad.png */,
+				B099ECEB1661064400D6EDDA /* Default-Portrait@2x~ipad.png */,
+				B099ECE21661049700D6EDDA /* Default.png */,
+				B099ECE31661049700D6EDDA /* Default@2x.png */,
+				B02F512415553A4F00C0F6E1 /* Icon-iPad-Spotlight.png */,
+				B099ECC41661024A00D6EDDA /* icon-iPad-retina.png */,
+				B02F512515553A4F00C0F6E1 /* Icon-iPad.png */,
+				B02F512615553A4F00C0F6E1 /* Icon-iPhone-Spotlight.png */,
+				B02F512715553A4F00C0F6E1 /* Icon-Retina-Spotlight.png */,
+				B02F512815553A4F00C0F6E1 /* Icon.png */,
+				B02F512915553A4F00C0F6E1 /* Icon@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B0F4A54D16D797ED003DF071 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				B0F4A54E16D797ED003DF071 /* FlurryAnalytics.h */,
+				B0F4A54F16D797ED003DF071 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B0072F40150912B100C96ADC /* BTLETools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0072F5F150912B200C96ADC /* Build configuration list for PBXNativeTarget "BTLETools" */;
+			buildPhases = (
+				B0072F3D150912B100C96ADC /* Sources */,
+				B0072F3E150912B100C96ADC /* Frameworks */,
+				B0072F3F150912B100C96ADC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BTLETools;
+			productName = BTLETest;
+			productReference = B0072F41150912B100C96ADC /* BTLETools.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0072F38150912B100C96ADC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = B0072F3B150912B100C96ADC /* Build configuration list for PBXProject "BTLETools" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B0072F36150912B100C96ADC;
+			productRefGroup = B0072F42150912B100C96ADC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0072F40150912B100C96ADC /* BTLETools */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0072F3F150912B100C96ADC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0072F50150912B100C96ADC /* InfoPlist.strings in Resources */,
+				B053F6A51534B46500DD1047 /* DeviceViewController.xib in Resources */,
+				B09791F915356A5200AAD130 /* CharacteristicViewControllerViewController.xib in Resources */,
+				B02F512A15553A4F00C0F6E1 /* Icon-iPad-Spotlight.png in Resources */,
+				B02F512B15553A4F00C0F6E1 /* Icon-iPad.png in Resources */,
+				B02F512C15553A4F00C0F6E1 /* Icon-iPhone-Spotlight.png in Resources */,
+				B02F512D15553A4F00C0F6E1 /* Icon-Retina-Spotlight.png in Resources */,
+				B02F512E15553A4F00C0F6E1 /* Icon.png in Resources */,
+				B02F512F15553A4F00C0F6E1 /* Icon@2x.png in Resources */,
+				B0DADADF16545131001C59FA /* characteristics.strings in Resources */,
+				B0DADAE016545131001C59FA /* services.strings in Resources */,
+				B099ECC51661024B00D6EDDA /* icon-iPad-retina.png in Resources */,
+				B099ECDD1661046500D6EDDA /* Default-Landscape~ipad.png in Resources */,
+				B099ECE01661046500D6EDDA /* Default-Portrait~ipad.png in Resources */,
+				B099ECE41661049700D6EDDA /* Default.png in Resources */,
+				B099ECE51661049700D6EDDA /* Default@2x.png in Resources */,
+				B099ECEC1661064400D6EDDA /* Default-Landscape@2x~ipad.png in Resources */,
+				B099ECED1661064400D6EDDA /* Default-Portrait@2x~ipad.png in Resources */,
+				B0542A5A1663557C001A7048 /* VersusTestViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0072F3D150912B100C96ADC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0072F52150912B100C96ADC /* main.m in Sources */,
+				B0072F56150912B100C96ADC /* AppDelegate.m in Sources */,
+				B0B5FAE11534A90700701B76 /* ServicesViewController.m in Sources */,
+				B0B5FAE41534A95E00701B76 /* DevicesViewController.m in Sources */,
+				B053F6A41534B46500DD1047 /* DeviceViewController.m in Sources */,
+				B053F6A91534B90C00DD1047 /* BTLEDevice.m in Sources */,
+				B09791F51535698500AAD130 /* CharacteristicViewControllerViewController.m in Sources */,
+				B0DADAE816545585001C59FA /* CBService+Description.m in Sources */,
+				B0DADAF21654594D001C59FA /* CBCharacteristic+Description.m in Sources */,
+				B0542A591663557C001A7048 /* VersusTestViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B0072F4E150912B100C96ADC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0072F4F150912B100C96ADC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B0072F5D150912B200C96ADC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B0072F5E150912B200C96ADC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B0072F60150912B200C96ADC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
+				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
+				);
+				PRODUCT_NAME = BTLETools;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B0072F61150912B200C96ADC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Studio Sophisti";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
+				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
+				);
+				PRODUCT_NAME = BTLETools;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C512C382-FD12-434E-8392-EE89A21FEAF1";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0072F3B150912B100C96ADC /* Build configuration list for PBXProject "BTLETools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0072F5D150912B200C96ADC /* Debug */,
+				B0072F5E150912B200C96ADC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0072F5F150912B200C96ADC /* Build configuration list for PBXNativeTarget "BTLETools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0072F60150912B200C96ADC /* Debug */,
+				B0072F61150912B200C96ADC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0072F38150912B100C96ADC /* Project object */;
+}
