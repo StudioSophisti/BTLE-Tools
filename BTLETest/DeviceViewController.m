@@ -29,7 +29,7 @@
     lblName.text = _device.peripheralRef.name;
     
     lblUUID.text = [NSString stringWithFormat:@"Device UUID: %@", [_device.peripheralRef.identifier UUIDString]];
-    
+        
     lblTxPower.text = [NSString stringWithFormat:@"TX Power: %d",
                        [[_device.advertisementData objectForKey:CBAdvertisementDataTxPowerLevelKey] intValue]];
     

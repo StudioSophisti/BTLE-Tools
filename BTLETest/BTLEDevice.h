@@ -19,5 +19,6 @@
 @property (nonatomic, strong) CBPeripheral *peripheralRef;
 @property (nonatomic, strong) NSDictionary *advertisementData;
 @property (nonatomic, strong) CBCentralManager *manager;
+@property (nonatomic, strong) NSNumber *RSSI;
 
 @end

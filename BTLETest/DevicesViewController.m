@@ -57,21 +57,22 @@
     [self.tableView reloadData];
 }
 
-- (void)addPeripheral:(CBPeripheral*)peripheral {
+- (BTLEDevice*)addPeripheral:(CBPeripheral*)peripheral {
     BTLEDevice *device = [[BTLEDevice alloc] init];
     device.peripheralRef = peripheral;
-    device.advertisementData = nil;
     device.manager = manager;
     
     peripheral.delegate = self;
     
     [devices addObject:device];
+    return device;
 }
 
 - (void)updateRSSI {
     for (BTLEDevice *device in devices) {
         if (device.peripheralRef.state == CBPeripheralStateConnected) {
             [device.peripheralRef readRSSI];
+            device.RSSI = device.peripheralRef.RSSI;
         }
     }
     
@@ -148,13 +149,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     cell.textLabel.text = device.peripheralRef.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Signal strength: %d dB", device.RSSI.intValue];
     
     if (device.peripheralRef.state == CBPeripheralStateConnected) {
         cell.imageView.image = [UIImage imageNamed:@"bt_icon.png"];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Signal strength: %d dB", device.peripheralRef.RSSI.intValue];
     } else {
         cell.imageView.image = [UIImage imageNamed:@"bt_icon_grey.png"];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Not connected"];
     }
     
     return cell;
@@ -213,7 +213,9 @@
         }
     }
     
-    [self addPeripheral:peripheral];
+    BTLEDevice *device = [self addPeripheral:peripheral];
+    device.advertisementData = advertisementData;
+    device.RSSI = RSSI;
     
     [self.tableView reloadData];
 }
