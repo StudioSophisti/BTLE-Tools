@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3D8018E5-5B0D-4D53-8076-0027F6F202F7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BTLETools</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8EAF10C1-0B94-4914-897A-6E0D09F7E7EE</key>
+		<string>https://github.com/StudioSophisti/BTLE-Tools.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BTLETools.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8EAF10C1-0B94-4914-897A-6E0D09F7E7EE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/StudioSophisti/BTLE-Tools.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8EAF10C1-0B94-4914-897A-6E0D09F7E7EE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8EAF10C1-0B94-4914-897A-6E0D09F7E7EE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BTLE Tools</string>
+		</dict>
+	</array>
+</dict>
+</plist>

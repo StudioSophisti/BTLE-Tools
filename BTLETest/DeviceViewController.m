@@ -8,6 +8,7 @@
 
 #import "DeviceViewController.h"
 #import "BTLEDevice.h"
+#import "ServicesViewController.h"
 
 @interface DeviceViewController ()
 
@@ -15,18 +16,8 @@
 
 @implementation DeviceViewController
 
-- (id)initWithDevice:(BTLEDevice*)theDevice {
-    self = [super initWithNibName:@"DeviceViewController" bundle:[NSBundle mainBundle]];
-    if (self) {
-        device = [theDevice retain];
-    }
-    return self;
-}
-
 - (void)dealloc {
-    [device release];
-    
-    [super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -34,81 +25,101 @@
     [super viewDidLoad];
     
     self.title = @"Device Data";
-    
-    lblName.text = device.peripheralRef.name;
-    
-    lblUUID.text = [NSString stringWithFormat:@"Device UUID: %@", device.peripheralRef.UUID];
-    //lblUUID.text = [NSString stringWithFormat:@"Device UUID: %@", CFUUIDCreateString(NULL, device.peripheralRef.UUID)];
-    
-    [lblUUID sizeToFit];
-    
-    lblTxPower.text = [NSString stringWithFormat:@"TX Power: %d", 
-                       [[device.advertisementData objectForKey:CBAdvertisementDataTxPowerLevelKey] intValue]];
 
+    lblName.text = _device.peripheralRef.name;
     
+    lblUUID.text = [NSString stringWithFormat:@"Device UUID: %@", [_device.peripheralRef.identifier UUIDString]];
+    
+    lblTxPower.text = [NSString stringWithFormat:@"TX Power: %d",
+                       [[_device.advertisementData objectForKey:CBAdvertisementDataTxPowerLevelKey] intValue]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViews) name:@"connection_changed" object:nil];
+}
+
+- (void)updateViews {
+    
+    if (_device.peripheralRef.state == CBPeripheralStateConnected) {
+        
+        connectCell.accessoryView = nil;
+        connectCell.textLabel.text = @"Disconnect";
+        
+    } else if (_device.peripheralRef.state == CBPeripheralStateConnecting) {
+        
+        connectCell.accessoryView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [(UIActivityIndicatorView*)connectCell.accessoryView startAnimating];
+        connectCell.textLabel.text = @"Connecting";
+        
+    } else {
+        
+        connectCell.accessoryView = nil;
+        connectCell.textLabel.text = @"Connect";
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    [self updateViews];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 1 && _device.peripheralRef.state == CBPeripheralStateConnected) return 2;
+    else if (section == 1) return 1;
+    else return 3;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (device.peripheralRef.isConnected) {
+    if (indexPath.section == 1 && indexPath.row == 1) {
         
-        [btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+        ServicesViewController *servicesVc = nil;
+        
+        if (IS_IPAD) {
+            [[self.splitViewController.viewControllers objectAtIndex:1] popToRootViewControllerAnimated:YES];
+            servicesVc = (ServicesViewController*)[[(UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:1]
+                                                    viewControllers] objectAtIndex:0];
+            
+        } else {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            servicesVc = [sb instantiateViewControllerWithIdentifier:@"servicesViewController"];
+            
+            [self.navigationController pushViewController:servicesVc animated:YES];
+        }
+    
+        servicesVc.device = _device.peripheralRef;
+        _device.peripheralRef.delegate = servicesVc;
+        [_device.peripheralRef discoverServices:nil];
+        [servicesVc updateTitle];
+        
+    } else if (indexPath.section == 1 && indexPath.row == 0) {
+        [self actionConnect:nil];
     }
 }
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)didConnect {
-    
-    [actConnect stopAnimating];
-    actConnect.hidden = YES;
-    
-    [btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
-}
-
-- (void)didDisconnect {
-    
-    [actConnect stopAnimating];
-    actConnect.hidden = YES;
-    
-    [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
-}
-
 
 #pragma mark - Actions
 
 - (IBAction)actionConnect:(id)sender {
     
-    if (!actConnect.hidden) return;
-
-    if (device.peripheralRef.isConnected) {
-        
-        // when connected, disconnect
-        [BTLEDevice setConnectedDevice:nil];
-        [device.manager cancelPeripheralConnection:device.peripheralRef];
+    if (_device.peripheralRef.state != CBPeripheralStateDisconnected) {
+        [_device.manager cancelPeripheralConnection:_device.peripheralRef];
         
     } else {
-        
-        [BTLEDevice setConnectedDevice:device];
-        [device.manager connectPeripheral:device.peripheralRef options:nil];
+        [_device.manager connectPeripheral:_device.peripheralRef options:nil];
     }
     
-    actConnect.hidden = NO;
-    [actConnect startAnimating];
-    
+    [self updateViews];
 }
 
 @end

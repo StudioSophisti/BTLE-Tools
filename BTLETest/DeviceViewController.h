@@ -10,18 +10,18 @@
 
 @class BTLEDevice;
 
-@interface DeviceViewController : UIViewController
+@interface DeviceViewController : UITableViewController
 {
     IBOutlet UILabel *lblName, *lblTxPower, *lblUUID, *lblServices;
     IBOutlet UIActivityIndicatorView *actConnect;
     IBOutlet UIButton *btnConnect;
-    BTLEDevice *device;
+    IBOutlet UIImageView *btImageView;
+    IBOutlet UITableViewCell *servicesCell, *connectCell;
 }
 
-- (id)initWithDevice:(BTLEDevice*)theDevice;
+@property (nonatomic, strong) BTLEDevice* device;
 
 - (IBAction)actionConnect:(id)sender;
-- (void)didConnect;
-- (void)didDisconnect;
+- (void)updateViews;
 
 @end

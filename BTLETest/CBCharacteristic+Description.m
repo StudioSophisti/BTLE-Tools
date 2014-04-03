@@ -43,7 +43,7 @@
 - (NSString*)asciiString {
     if (!self.value) return @"-";
     
-    NSString *ascii = [[[NSString alloc] initWithData:self.value encoding:NSASCIIStringEncoding] autorelease];
+    NSString *ascii = [[NSString alloc] initWithData:self.value encoding:NSASCIIStringEncoding];
     return ascii;
 }
 

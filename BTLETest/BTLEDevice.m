@@ -8,30 +8,9 @@
 
 #import "BTLEDevice.h"
 
-static BTLEDevice *connectedDevice__ = nil;
-
 @implementation BTLEDevice
 
-@synthesize peripheralRef, advertisementData, RSSI, manager;
+@synthesize peripheralRef, advertisementData, manager;
 
-+ (void)setConnectedDevice:(BTLEDevice*)device {
-    if (connectedDevice__ != device) {
-        [connectedDevice__ release];
-        connectedDevice__ = [device retain];
-    }
-}
 
-+ (BTLEDevice*)connectedDevice {
-    return connectedDevice__;
-}
-
-- (void)dealloc {
-    
-    [peripheralRef release];
-    [advertisementData release];
-    [RSSI release];
-    [manager release];
-    
-    [super dealloc];
-}
 @end

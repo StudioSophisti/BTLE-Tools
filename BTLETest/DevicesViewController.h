@@ -11,6 +11,7 @@
 
 @class DeviceViewController;
 @class ServicesViewController;
+@class BTLEDevice;
 
 @interface DevicesViewController : UITableViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 {
@@ -18,10 +19,9 @@
     NSMutableArray *devices;
     BOOL scanning;
     NSTimer *scanTimer;
+    
     DeviceViewController *deviceVc;
     ServicesViewController *servicesVc;
 }
-
-@property (nonatomic,retain) ServicesViewController *servicesVc;
 
 @end

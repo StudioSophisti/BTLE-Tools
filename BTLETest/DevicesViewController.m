@@ -17,44 +17,18 @@
 
 @implementation DevicesViewController
 
-@synthesize servicesVc;
-
-- (void)dealloc {
-    
-    [deviceVc release];
-    [manager release];
-    [devices release];
-    [servicesVc release];
-    
-    [super dealloc];
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        
-        manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        devices = [[NSMutableArray arrayWithCapacity:10] retain];
-    
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    devices = [NSMutableArray arrayWithCapacity:10];
 
     self.title = @"BT Smart Devices";
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionScan)] autorelease];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionScan)];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRSSI) userInfo:nil repeats:YES];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -65,13 +39,11 @@
 {
     [super viewWillAppear:animated];
 
-    // interrupt pending connection attempts
+    /* interrupt pending connection attempts
     BTLEDevice *connectedDevice = [BTLEDevice connectedDevice];
     if (connectedDevice) {
         [connectedDevice.manager cancelPeripheralConnection:connectedDevice.peripheralRef];
-    }
-    
-    [self actionScan];
+    }*/
 }
 
 #pragma mark - Actions
@@ -85,15 +57,35 @@
     [self.tableView reloadData];
 }
 
-- (void)actionScan {
+- (void)addPeripheral:(CBPeripheral*)peripheral {
+    BTLEDevice *device = [[BTLEDevice alloc] init];
+    device.peripheralRef = peripheral;
+    device.advertisementData = nil;
+    device.manager = manager;
     
+    peripheral.delegate = self;
+    
+    [devices addObject:device];
+}
+
+- (void)updateRSSI {
+    for (BTLEDevice *device in devices) {
+        if (device.peripheralRef.state == CBPeripheralStateConnected) {
+            [device.peripheralRef readRSSI];
+        }
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)actionScan {    
     
     if (manager.state == CBCentralManagerStatePoweredOff) {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Bluetooth disabled" 
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth disabled" 
                                                          message:@"Please enable Bluetooth in your device settings to use this app." 
                                                         delegate:nil 
                                                cancelButtonTitle:@"OK" 
-                                               otherButtonTitles:nil] autorelease];
+                                               otherButtonTitles:nil];
         [alert show];
         return;
     }
@@ -106,8 +98,11 @@
     [self.tableView reloadData];
     
     [manager stopScan];
-    [manager scanForPeripheralsWithServices:nil options:nil];
+    
+    //check if other apps are connected
     [manager retrieveConnectedPeripherals];
+        
+    [manager scanForPeripheralsWithServices:nil options:nil];
     
     scanTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(actionStopScanning) userInfo:nil repeats:NO];
     
@@ -122,7 +117,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int n = [devices count];
+    NSInteger n = [devices count];
     if (scanning) n++;
     return n;
 }
@@ -134,11 +129,11 @@
 		
 		UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:loadingIdentifier];
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-										   reuseIdentifier:loadingIdentifier] autorelease];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+										   reuseIdentifier:loadingIdentifier];
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			UIActivityIndicatorView *loadingView = [[[UIActivityIndicatorView alloc]
-                                                     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+			UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc]
+                                                     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             loadingView.tag = 8;
 			[cell.contentView addSubview:loadingView];
 		}
@@ -151,15 +146,16 @@
     
     static NSString *CellIdentifier = @"DeviceCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
-                                       reuseIdentifier:CellIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    }
     
     cell.textLabel.text = device.peripheralRef.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Signal strength: %d dB", device.RSSI.intValue];
+    
+    if (device.peripheralRef.state == CBPeripheralStateConnected) {
+        cell.imageView.image = [UIImage imageNamed:@"bt_icon.png"];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Signal strength: %d dB", device.peripheralRef.RSSI.intValue];
+    } else {
+        cell.imageView.image = [UIImage imageNamed:@"bt_icon_grey.png"];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Not connected"];
+    }
     
     return cell;
 }
@@ -175,20 +171,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    BTLEDevice *device = [devices objectAtIndex:indexPath.row];
-    
-    if (deviceVc) [deviceVc release];
-    deviceVc = [[DeviceViewController alloc] initWithDevice:device];
-    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    deviceVc  = [sb instantiateViewControllerWithIdentifier:@"deviceViewController"];
+    deviceVc.device = [devices objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:deviceVc animated:YES];
-    
 }
+
 
 #pragma mark - CBCentralManagerDelegate
 
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    NSLog(@"Central manager changed state: %d", central.state);
+    NSLog(@"Central manager changed state: %ld", central.state);
     
     if (central.state == CBCentralManagerStatePoweredOn) {
         [self actionScan];
@@ -196,7 +190,7 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals {
-    NSLog(@"%d periphirals retrieved", [peripherals count]);
+    NSLog(@"%ld periphirals retrieved", [peripherals count]);
 }
 
 - (void)centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals {
@@ -204,16 +198,7 @@
     for (CBPeripheral *peripheral in peripherals) {
         NSLog(@"Periphiral discovered: %@", peripheral.name);
         
-        BTLEDevice *device = [[[BTLEDevice alloc] init] autorelease];
-        device.peripheralRef = peripheral;
-        device.RSSI = peripheral.RSSI;
-        device.advertisementData = nil;
-        device.manager = central;
-        
-        peripheral.delegate = self;
-        [peripheral readRSSI];
-        
-        [devices addObject:device];
+        [self addPeripheral:peripheral];
         
     }
     [self.tableView reloadData];
@@ -222,13 +207,13 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     NSLog(@"Periphiral discovered: %@, signal strength: %d", peripheral.name, RSSI.intValue);
     
-    BTLEDevice *device = [[[BTLEDevice alloc] init] autorelease];
-    device.peripheralRef = peripheral;
-    device.RSSI = RSSI;
-    device.advertisementData = advertisementData;
-    device.manager = central;
+    for (BTLEDevice *device in devices) {
+        if ([[device.peripheralRef.identifier UUIDString] isEqualToString:[peripheral.identifier UUIDString]]) {
+            return;
+        }
+    }
     
-    [devices addObject:device];
+    [self addPeripheral:peripheral];
     
     [self.tableView reloadData];
 }
@@ -236,65 +221,29 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"Periphiral connected: %@", peripheral.name);
     
-    [deviceVc didConnect];
-    
-    if (!servicesVc) {
-        servicesVc = [[ServicesViewController alloc] initWithDevice:peripheral];
-    } else {
-        servicesVc.device = peripheral;
-        [servicesVc discoverServices];
-    }
-    
-    if (!servicesVc.navigationController || servicesVc.navigationController == self.navigationController) // only push on iPhone
-        [self.navigationController pushViewController:servicesVc animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"connection_changed" object:nil];
+        
+    [self.tableView reloadData];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
      NSLog(@"Periphiral disconnected: %@", peripheral.name);
     
-    [deviceVc didDisconnect];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"connection_changed" object:nil];
     
-    if ([self.navigationController.viewControllers count] > 2) {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Device disconnected"
-                                                         message:@""
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles: nil] autorelease];
-        [alert show];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
+    [self.tableView reloadData];
     
-    if (servicesVc) {
-        servicesVc.device = nil;
-        [servicesVc updateTable];
-        if (servicesVc.navigationController != self.navigationController) {
-            [servicesVc.navigationController popToRootViewControllerAnimated:YES];
-        }
-    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Periphiral failed to connect: %@", peripheral.name);
     
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Failed to connect" 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to connect" 
                                                     message:error.localizedDescription 
                                                    delegate:nil 
                                           cancelButtonTitle:@"OK" 
-                                           otherButtonTitles:nil] autorelease];
+                                           otherButtonTitles:nil];
     [alert show];
-}
-
-#pragma mark - CBPeripheralDelegate
-
-- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error {
-  
-    for (BTLEDevice *device in devices) {
-        if (device.peripheralRef == peripheral) {
-            device.RSSI = peripheral.RSSI;
-        }
-    }
-    
-    [self.tableView reloadData];
 }
 
 @end

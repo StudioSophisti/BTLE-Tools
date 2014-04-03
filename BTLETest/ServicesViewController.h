@@ -9,20 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/Corebluetooth.h>
 
-@class CharacteristicViewControllerViewController;
+@class CharacteristicViewController;
 
 @interface ServicesViewController : UITableViewController <CBPeripheralDelegate>
 {
     CBPeripheral *device;
     BOOL loading;
     
-    CharacteristicViewControllerViewController *charVc;
+    CharacteristicViewController *charVc;
 }
 
-@property (nonatomic, retain) CBPeripheral *device;
+@property (nonatomic, strong) CBPeripheral *device;
 
-- (id)initWithDevice:(CBPeripheral*)theDevice;
-- (void)discoverServices;
 - (void)updateTable;
+- (void)updateTitle;
 
 @end

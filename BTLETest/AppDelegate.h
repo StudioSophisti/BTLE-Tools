@@ -11,11 +11,10 @@
 
 @class DevicesViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UISplitViewControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
 }
-@property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) DevicesViewController *viewController;
+@property (strong, nonatomic) UIWindow *window;
 
 @end

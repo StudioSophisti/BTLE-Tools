@@ -8,7 +8,7 @@
 
 #import "ServicesViewController.h"
 #import "BTLEDevice.h"
-#import "CharacteristicViewControllerViewController.h"
+#import "CharacteristicViewController.h"
 #import "CBService+Description.h"
 #import "CBCharacteristic+Description.h"
 
@@ -21,57 +21,33 @@
 @synthesize device;
 
 - (void)dealloc {
-    [device release];
-    [charVc release];
+    device.delegate = nil;
     
-    [super dealloc];
-}
-
-- (id)initWithDevice:(CBPeripheral *)theDevice {
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        device = [theDevice retain];
-    }
-    return self;
+    [[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 }
 
 - (void)updateTable {
     [self.tableView reloadData];
 }
 
-- (void)discoverServices {
-    
-    if (device) {
-        loading = YES;
-        
-        device.delegate = self;
-        [device discoverServices:nil];
-    }
-    
-    [self.tableView reloadData];
+- (void)updateTitle {
+    if (IS_IPAD)
+        self.title = device.name;
+    else        
+        self.title = @"Services";
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.title = @"Services";
     
-    [self discoverServices];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self.tableView selector:@selector(reloadData) name:@"connection_changed" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
     
-    if (charVc) [charVc release];
     charVc = nil;
 }
 
@@ -83,13 +59,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (loading || !device) return 1;
+    if (loading || !device || device.state == CBPeripheralStateDisconnected) return 1;
     return [device.services count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (loading || !device) return 1;
+    if (loading || !device || device.state == CBPeripheralStateDisconnected) return 1;
     
     CBService *service = [device.services objectAtIndex:section];
     
@@ -98,8 +74,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    if (loading || !device) return 44;
+    if (loading || !device || device.state == CBPeripheralStateDisconnected) return 44;
     
     CBService *service = [device.services objectAtIndex:indexPath.section];
     CBCharacteristic *characterstic = [service.characteristics objectAtIndex:indexPath.row];
@@ -107,7 +82,7 @@
     NSString *cellText = [NSString stringWithFormat:@"Value: %@\nAscii: %@", [characterstic hexString], [characterstic asciiString]];
     UIFont *cellFont = [UIFont systemFontOfSize:14];
     CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     
     return labelSize.height + 44 - 13;
 }
@@ -119,11 +94,11 @@
 		
 		UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:loadingIdentifier];
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-										   reuseIdentifier:loadingIdentifier] autorelease];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+										   reuseIdentifier:loadingIdentifier];
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			UIActivityIndicatorView *loadingView = [[[UIActivityIndicatorView alloc]
-                                                     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+			UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc]
+                                                     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 			loadingView.tag = 8;
 			[cell.contentView addSubview:loadingView];
 		}
@@ -132,16 +107,20 @@
         
 		return cell;
         
-    } else if (!device) {
+    } else if (!device || device.state == CBPeripheralStateDisconnected) {
         static NSString *nodDeviceIdentifier = @"NoDeviceCellIdentifier";
 		
 		UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:nodDeviceIdentifier];
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-										   reuseIdentifier:nodDeviceIdentifier] autorelease];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+										   reuseIdentifier:nodDeviceIdentifier];
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.textAlignment = UITextAlignmentCenter;
-            cell.textLabel.text = @"No device connected";
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
+            
+            if (!device)
+                cell.textLabel.text = @"No device connected";
+            else
+                cell.textLabel.text = @"Disconnected";
 		}
 		return cell;
     }
@@ -151,15 +130,7 @@
     
     static NSString *CellIdentifier = @"CharacteristicCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
-                                       reuseIdentifier:CellIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.detailTextLabel.numberOfLines = 0;
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-        cell.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
-    }
-    
+        
     cell.textLabel.text = [characterstic characteristicName];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Value: %@\nAscii: %@", [characterstic hexString], [characterstic asciiString]];
     
@@ -170,8 +141,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    
-    if (loading) return @"";
+    if (loading || device.state == CBPeripheralStateDisconnected) return @"";
     
     CBService *service = [device.services objectAtIndex:section];
     return [service serviceName];
@@ -184,11 +154,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+ 
+    if (!device || device.state == CBPeripheralStateDisconnected || loading) return;
     
     CBService *service = [device.services objectAtIndex:indexPath.section];
     CBCharacteristic *characterstic = [service.characteristics objectAtIndex:indexPath.row];
     
-    charVc = [[CharacteristicViewControllerViewController alloc] initWithCharacteristic:characterstic];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    charVc = [sb instantiateViewControllerWithIdentifier:@"characteristicViewController"];
+    charVc.characteristic = characterstic;
     
     [self.navigationController pushViewController:charVc animated:YES];
 }

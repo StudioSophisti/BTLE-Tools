@@ -12,17 +12,12 @@
 @interface BTLEDevice : NSObject
 {
     CBPeripheral *peripheralRef;
-    NSNumber *RSSI;
     NSDictionary *advertisementData;
     CBCentralManager *manager;
 }
 
-@property (nonatomic, retain) CBPeripheral *peripheralRef;
-@property (nonatomic, retain) NSNumber *RSSI;
-@property (nonatomic, retain) NSDictionary *advertisementData;
-@property (nonatomic, retain) CBCentralManager *manager;
-
-+ (void)setConnectedDevice:(BTLEDevice*)device;
-+ (BTLEDevice*)connectedDevice;
+@property (nonatomic, strong) CBPeripheral *peripheralRef;
+@property (nonatomic, strong) NSDictionary *advertisementData;
+@property (nonatomic, strong) CBCentralManager *manager;
 
 @end
