@@ -3,7 +3,7 @@
 //  BTLETools
 //
 //  Created by Tijn Kooijmans on 11-04-12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Studio Sophisti. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
