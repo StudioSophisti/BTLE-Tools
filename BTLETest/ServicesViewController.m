@@ -30,18 +30,13 @@
     [self.tableView reloadData];
 }
 
-- (void)updateTitle {
-    if (IS_IPAD)
-        self.title = device.name;
-    else        
-        self.title = @"Services";
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self.tableView selector:@selector(reloadData) name:@"connection_changed" object:nil];
+    
+    self.title = @"Services";
 }
 
 - (void)viewDidAppear:(BOOL)animated

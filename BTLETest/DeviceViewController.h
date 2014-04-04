@@ -12,7 +12,7 @@
 
 @interface DeviceViewController : UITableViewController
 {
-    IBOutlet UILabel *lblName, *lblTxPower, *lblUUID, *lblServices;
+    IBOutlet UILabel *lblName, *lblTxPower, *lblUUID, *lblServices, *lblData;
     IBOutlet UIActivityIndicatorView *actConnect;
     IBOutlet UIButton *btnConnect;
     IBOutlet UIImageView *btImageView;
@@ -23,5 +23,7 @@
 
 - (IBAction)actionConnect:(id)sender;
 - (void)updateViews;
+- (void)updateRSSI;
+- (void)updateLabels;
 
 @end

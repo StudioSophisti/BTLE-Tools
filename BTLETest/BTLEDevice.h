@@ -14,7 +14,17 @@
     CBPeripheral *peripheralRef;
     NSDictionary *advertisementData;
     CBCentralManager *manager;
+    
+    NSString *advServices;
+    NSString *brcData;
 }
+
+- (NSString*)advertisedServices;
+- (int)txPower;
+- (int)channel;
+- (BOOL)isConnectable;
+- (NSString*)name;
+- (NSString*)broadcastData;
 
 @property (nonatomic, strong) CBPeripheral *peripheralRef;
 @property (nonatomic, strong) NSDictionary *advertisementData;

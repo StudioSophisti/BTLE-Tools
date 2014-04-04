@@ -22,6 +22,5 @@
 @property (nonatomic, strong) CBPeripheral *device;
 
 - (void)updateTable;
-- (void)updateTitle;
 
 @end

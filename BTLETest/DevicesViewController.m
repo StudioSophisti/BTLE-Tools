@@ -24,11 +24,17 @@
     manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     devices = [NSMutableArray arrayWithCapacity:10];
 
-    self.title = @"BT Smart Devices";
+    self.title = @"BLE Scan Results";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionScan)];
     
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRSSI) userInfo:nil repeats:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionScan)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+    
+    deviceVc = (DeviceViewController*)[[(UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:1]
+                                            viewControllers] objectAtIndex:0];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -39,11 +45,6 @@
 {
     [super viewWillAppear:animated];
 
-    /* interrupt pending connection attempts
-    BTLEDevice *connectedDevice = [BTLEDevice connectedDevice];
-    if (connectedDevice) {
-        [connectedDevice.manager cancelPeripheralConnection:connectedDevice.peripheralRef];
-    }*/
 }
 
 #pragma mark - Actions
@@ -75,7 +76,7 @@
             device.RSSI = device.peripheralRef.RSSI;
         }
     }
-    
+    [deviceVc updateRSSI];
     [self.tableView reloadData];
 }
 
@@ -94,7 +95,13 @@
     if (scanTimer) [scanTimer invalidate];
     
     scanning = YES;
-    [devices removeAllObjects]; 
+    
+    NSMutableArray *newDevices = [[NSMutableArray alloc] initWithCapacity:10];
+    for (BTLEDevice *device in devices) {
+        if (device.peripheralRef.state != CBPeripheralStateDisconnected)
+            [newDevices addObject:device];
+    }
+    devices = newDevices;
     
     [self.tableView reloadData];
     
@@ -148,8 +155,12 @@
     static NSString *CellIdentifier = @"DeviceCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.textLabel.text = device.peripheralRef.name;
+    cell.textLabel.text = [device name];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Signal strength: %d dB", device.RSSI.intValue];
+    
+    if ([device channel] > -1) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, channel %d", cell.detailTextLabel.text, [device channel]];
+    }
     
     if (device.peripheralRef.state == CBPeripheralStateConnected) {
         cell.imageView.image = [UIImage imageNamed:@"bt_icon.png"];
@@ -171,10 +182,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    deviceVc  = [sb instantiateViewControllerWithIdentifier:@"deviceViewController"];
-    deviceVc.device = [devices objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:deviceVc animated:YES];
+    if (IS_IPAD) {
+        [[self.splitViewController.viewControllers objectAtIndex:1] setViewControllers:[NSArray arrayWithObject:deviceVc]];
+        deviceVc.device = [devices objectAtIndex:indexPath.row];
+        [deviceVc updateViews];
+        deviceVc.title = [deviceVc.device name];
+    } else {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        deviceVc  = [sb instantiateViewControllerWithIdentifier:@"deviceViewController"];
+        deviceVc.device = [devices objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:deviceVc animated:YES];
+    }
+    
 }
 
 
@@ -198,7 +217,14 @@
     for (CBPeripheral *peripheral in peripherals) {
         NSLog(@"Periphiral discovered: %@", peripheral.name);
         
-        [self addPeripheral:peripheral];
+        BOOL found = NO;
+        for (BTLEDevice *device in devices) {
+            if ([[device.peripheralRef.identifier UUIDString] isEqualToString:[peripheral.identifier UUIDString]]) {
+                found = YES;
+            }
+        }
+        if (!found)
+            [self addPeripheral:peripheral];
         
     }
     [self.tableView reloadData];

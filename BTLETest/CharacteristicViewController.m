@@ -156,19 +156,19 @@
         CGSize labelSize = [lblName.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         return labelSize.height + 20;
     
-    } if (indexPath.row == 1) {
+    } else if (indexPath.row == 1) {
         UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
         CGSize labelSize = [lblValue.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
         return labelSize.height + 20;
         
-    } if (indexPath.row == 2) {
+    } else if (indexPath.row == 2) {
         UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
         CGSize labelSize = [lblAscii.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
         return labelSize.height + 20;
         
-    } if (indexPath.row == 3) {
+    } else if (indexPath.row == 3) {
         UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
         CGSize labelSize = [lblProperties.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];

@@ -25,6 +25,7 @@
 		B013712918ED8A5800F35365 /* bt_icon_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = B013712718ED8A5800F35365 /* bt_icon_grey.png */; };
 		B013712A18ED8A5800F35365 /* bt_icon_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B013712818ED8A5800F35365 /* bt_icon_grey@2x.png */; };
 		B013712D18EDAF7900F35365 /* BTSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B013712C18EDAF7900F35365 /* BTSplitViewDelegate.m */; };
+		B013713218EEB99B00F35365 /* CBUUID+String.m in Sources */ = {isa = PBXBuildFile; fileRef = B013713118EEB99B00F35365 /* CBUUID+String.m */; };
 		B053F6A41534B46500DD1047 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A21534B46500DD1047 /* DeviceViewController.m */; };
 		B053F6A91534B90C00DD1047 /* BTLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A81534B90C00DD1047 /* BTLEDevice.m */; };
 		B09791F51535698500AAD130 /* CharacteristicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09791F31535698500AAD130 /* CharacteristicViewController.m */; };
@@ -62,6 +63,8 @@
 		B013712B18EDAF7900F35365 /* BTSplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSplitViewDelegate.h; sourceTree = "<group>"; };
 		B013712C18EDAF7900F35365 /* BTSplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSplitViewDelegate.m; sourceTree = "<group>"; };
 		B013712F18EDB58C00F35365 /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		B013713018EEB99B00F35365 /* CBUUID+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+String.h"; sourceTree = "<group>"; };
+		B013713118EEB99B00F35365 /* CBUUID+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+String.m"; sourceTree = "<group>"; };
 		B053F6A11534B46500DD1047 /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 		B053F6A21534B46500DD1047 /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
 		B053F6A71534B90C00DD1047 /* BTLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEDevice.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */,
 				B013712B18EDAF7900F35365 /* BTSplitViewDelegate.h */,
 				B013712C18EDAF7900F35365 /* BTSplitViewDelegate.m */,
+				B013713018EEB99B00F35365 /* CBUUID+String.h */,
+				B013713118EEB99B00F35365 /* CBUUID+String.m */,
 			);
 			path = BTLETest;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				B053F6A41534B46500DD1047 /* DeviceViewController.m in Sources */,
 				B053F6A91534B90C00DD1047 /* BTLEDevice.m in Sources */,
 				B09791F51535698500AAD130 /* CharacteristicViewController.m in Sources */,
+				B013713218EEB99B00F35365 /* CBUUID+String.m in Sources */,
 				B0DADAE816545585001C59FA /* CBService+Description.m in Sources */,
 				B0DADAF21654594D001C59FA /* CBCharacteristic+Description.m in Sources */,
 				B013712D18EDAF7900F35365 /* BTSplitViewDelegate.m in Sources */,
@@ -403,7 +409,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
 				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
@@ -415,7 +421,7 @@
 				);
 				PRODUCT_NAME = BTLETools;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C512C382-FD12-434E-8392-EE89A21FEAF1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

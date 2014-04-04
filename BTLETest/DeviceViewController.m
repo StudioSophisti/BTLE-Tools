@@ -25,18 +25,37 @@
     [super viewDidLoad];
     
     self.title = @"Device Data";
-
-    lblName.text = _device.peripheralRef.name;
     
-    lblUUID.text = [NSString stringWithFormat:@"Device UUID: %@", [_device.peripheralRef.identifier UUIDString]];
-        
-    lblTxPower.text = [NSString stringWithFormat:@"TX Power: %d",
-                       [[_device.advertisementData objectForKey:CBAdvertisementDataTxPowerLevelKey] intValue]];
+    [self updateLabels];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViews) name:@"connection_changed" object:nil];
 }
 
+- (void)updateLabels {
+    lblName.text = [_device name];
+    lblUUID.text = [NSString stringWithFormat:@"UUID: %@", [_device.peripheralRef.identifier UUIDString]];
+    lblServices.text = [_device advertisedServices];
+    lblData.text = [_device broadcastData];
+    
+    [self updateRSSI];
+}
+
+- (void)updateRSSI {
+    
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [str appendFormat:@"RSSI: %d", [_device.RSSI intValue]];
+    if ([_device txPower] > -1) {
+        [str appendFormat:@", TX Power: %d", [_device txPower]];
+    }
+    if ([_device channel] > -1) {
+        [str appendFormat:@", Channel: %d", [_device channel]];
+    }
+    lblTxPower.text = str;
+}
+
 - (void)updateViews {
+    
+    [self updateLabels];
     
     if (_device.peripheralRef.state == CBPeripheralStateConnected) {
         
@@ -47,7 +66,11 @@
         
         connectCell.accessoryView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [(UIActivityIndicatorView*)connectCell.accessoryView startAnimating];
-        connectCell.textLabel.text = @"Connecting";
+        connectCell.textLabel.text = @"Connecting...";
+        
+    } else if (![_device isConnectable]) {
+        
+        connectCell.textLabel.text = @"Not Connectable";
         
     } else {
         
@@ -69,12 +92,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    if (!_device) return 0;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1 && _device.peripheralRef.state == CBPeripheralStateConnected) return 2;
+    if (section == 2) return 2;
+    else if (section == 1 && _device.peripheralRef.state == CBPeripheralStateConnected) return 2;
     else if (section == 1) return 1;
     else return 3;
 }
@@ -86,27 +111,47 @@
         
         ServicesViewController *servicesVc = nil;
         
-        if (IS_IPAD) {
-            [[self.splitViewController.viewControllers objectAtIndex:1] popToRootViewControllerAnimated:YES];
-            servicesVc = (ServicesViewController*)[[(UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:1]
-                                                    viewControllers] objectAtIndex:0];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        servicesVc = [sb instantiateViewControllerWithIdentifier:@"servicesViewController"];
             
-        } else {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            servicesVc = [sb instantiateViewControllerWithIdentifier:@"servicesViewController"];
-            
-            [self.navigationController pushViewController:servicesVc animated:YES];
-        }
+        [self.navigationController pushViewController:servicesVc animated:YES];        
     
         servicesVc.device = _device.peripheralRef;
         _device.peripheralRef.delegate = servicesVc;
         [_device.peripheralRef discoverServices:nil];
-        [servicesVc updateTitle];
         
-    } else if (indexPath.section == 1 && indexPath.row == 0) {
+    } else if (indexPath.section == 1 && indexPath.row == 0 && [_device isConnectable]) {
         [self actionConnect:nil];
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0 && indexPath.row == 1) {
+        UIFont *cellFont = [UIFont systemFontOfSize:16];
+        CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
+        CGSize labelSize = [lblUUID.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        return labelSize.height + 20;
+        
+    } else if (indexPath.section == 2 && indexPath.row == 0) {
+        UIFont *cellFont = [UIFont systemFontOfSize:16];
+        CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
+        CGSize labelSize = [lblServices.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        return labelSize.height + 20;
+        
+    } else if (indexPath.section == 2 && indexPath.row == 1) {
+        UIFont *cellFont = [UIFont systemFontOfSize:16];
+        CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
+        CGSize labelSize = [lblData.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        return labelSize.height + 20;
+        
+    } else {
+        return 44;
+    }
+    
+    
+}
+
 
 #pragma mark - Actions
 
