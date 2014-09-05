@@ -50,6 +50,7 @@
 #pragma mark - Actions
 
 - (void)actionStopScanning {
+    
     scanTimer = nil;
     
     scanning = NO;
@@ -80,7 +81,7 @@
     [self.tableView reloadData];
 }
 
-- (void)actionScan {    
+- (void)actionScan {
     
     if (manager.state == CBCentralManagerStatePoweredOff) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth disabled" 

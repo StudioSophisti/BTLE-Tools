@@ -11,6 +11,7 @@
 #import "DevicesViewController.h"
 #import "BTLEDevice.h"
 #import "Flurry.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -20,6 +21,8 @@
 #ifndef DEBUG
     [Flurry setCrashReportingEnabled:YES];
     [Flurry startSession:@"GQTXKK8BGM7N9NFJFM78"];
+    
+    [Crashlytics startWithAPIKey:@"716076147201bc2037ed37e6095dcd6cb83521a8"];
 #endif
     
     return YES;

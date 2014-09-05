@@ -28,6 +28,7 @@
 		B013713218EEB99B00F35365 /* CBUUID+String.m in Sources */ = {isa = PBXBuildFile; fileRef = B013713118EEB99B00F35365 /* CBUUID+String.m */; };
 		B053F6A41534B46500DD1047 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A21534B46500DD1047 /* DeviceViewController.m */; };
 		B053F6A91534B90C00DD1047 /* BTLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A81534B90C00DD1047 /* BTLEDevice.m */; };
+		B05A7BC419B9B04500C3E2BE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B05A7BC319B9B04500C3E2BE /* Crashlytics.framework */; };
 		B09791F51535698500AAD130 /* CharacteristicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09791F31535698500AAD130 /* CharacteristicViewController.m */; };
 		B0B5FAE11534A90700701B76 /* ServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B5FAE01534A90700701B76 /* ServicesViewController.m */; };
 		B0B5FAE41534A95E00701B76 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B5FAE31534A95E00701B76 /* DevicesViewController.m */; };
@@ -70,6 +71,7 @@
 		B053F6A71534B90C00DD1047 /* BTLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEDevice.h; sourceTree = "<group>"; };
 		B053F6A81534B90C00DD1047 /* BTLEDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEDevice.m; sourceTree = "<group>"; };
 		B0542A5C1663596F001A7048 /* CharacteristicDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacteristicDelegate.h; sourceTree = "<group>"; };
+		B05A7BC319B9B04500C3E2BE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		B09791F21535698500AAD130 /* CharacteristicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicViewController.h; sourceTree = "<group>"; };
 		B09791F31535698500AAD130 /* CharacteristicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicViewController.m; sourceTree = "<group>"; };
 		B0B5FADF1534A90700701B76 /* ServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesViewController.h; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			files = (
 				B013711C18ED6C9700F35365 /* Security.framework in Frameworks */,
 				B013711A18ED6C9000F35365 /* SystemConfiguration.framework in Frameworks */,
+				B05A7BC419B9B04500C3E2BE /* Crashlytics.framework in Frameworks */,
 				B0072F63150912CA00C96ADC /* CoreBluetooth.framework in Frameworks */,
 				B0072F46150912B100C96ADC /* UIKit.framework in Frameworks */,
 				B013711818ED6C2600F35365 /* libFlurry_4.4.0.a in Frameworks */,
@@ -123,6 +126,7 @@
 		B0072F44150912B100C96ADC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B05A7BC319B9B04500C3E2BE /* Crashlytics.framework */,
 				B013711B18ED6C9700F35365 /* Security.framework */,
 				B013711918ED6C9000F35365 /* SystemConfiguration.framework */,
 				B0072F62150912CA00C96ADC /* CoreBluetooth.framework */,
@@ -218,6 +222,7 @@
 				B0072F3D150912B100C96ADC /* Sources */,
 				B0072F3E150912B100C96ADC /* Frameworks */,
 				B0072F3F150912B100C96ADC /* Resources */,
+				B05A7BC219B9B01F00C3E2BE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -282,6 +287,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B05A7BC219B9B01F00C3E2BE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 716076147201bc2037ed37e6095dcd6cb83521a8 982566b6182982208d06a003ed7f815af5c0daba17f161a6e2b741f461ea605e";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B0072F3D150912B100C96ADC /* Sources */ = {
@@ -386,6 +407,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
 				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
@@ -410,6 +435,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
 				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
