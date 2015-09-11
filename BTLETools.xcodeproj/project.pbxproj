@@ -16,7 +16,6 @@
 		B0072F63150912CA00C96ADC /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0072F62150912CA00C96ADC /* CoreBluetooth.framework */; };
 		B013711218ED6A8100F35365 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B013711118ED6A8100F35365 /* Main_iPad.storyboard */; };
 		B013711518ED6A9A00F35365 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B013711418ED6A9A00F35365 /* Main.storyboard */; };
-		B013711818ED6C2600F35365 /* libFlurry_4.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B013711718ED6C2600F35365 /* libFlurry_4.4.0.a */; };
 		B013711A18ED6C9000F35365 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B013711918ED6C9000F35365 /* SystemConfiguration.framework */; };
 		B013711C18ED6C9700F35365 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B013711B18ED6C9700F35365 /* Security.framework */; };
 		B013712018ED719900F35365 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B013711F18ED719900F35365 /* Images.xcassets */; };
@@ -28,7 +27,6 @@
 		B013713218EEB99B00F35365 /* CBUUID+String.m in Sources */ = {isa = PBXBuildFile; fileRef = B013713118EEB99B00F35365 /* CBUUID+String.m */; };
 		B053F6A41534B46500DD1047 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A21534B46500DD1047 /* DeviceViewController.m */; };
 		B053F6A91534B90C00DD1047 /* BTLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B053F6A81534B90C00DD1047 /* BTLEDevice.m */; };
-		B05A7BC419B9B04500C3E2BE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B05A7BC319B9B04500C3E2BE /* Crashlytics.framework */; };
 		B09791F51535698500AAD130 /* CharacteristicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B09791F31535698500AAD130 /* CharacteristicViewController.m */; };
 		B0B5FAE11534A90700701B76 /* ServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B5FAE01534A90700701B76 /* ServicesViewController.m */; };
 		B0B5FAE41534A95E00701B76 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B5FAE31534A95E00701B76 /* DevicesViewController.m */; };
@@ -36,9 +34,13 @@
 		B0DADAE016545131001C59FA /* services.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0DADADE16545131001C59FA /* services.strings */; };
 		B0DADAE816545585001C59FA /* CBService+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DADAE716545585001C59FA /* CBService+Description.m */; };
 		B0DADAF21654594D001C59FA /* CBCharacteristic+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */; };
+		F6497B248FA0BF99D6A69F7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 087DF1E62591DB720050CBFA /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		087DF1E62591DB720050CBFA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E42617BCA7186F363F42834 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4C780DCF7F7AF1DA5B19097B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B0072F41150912B100C96ADC /* BTLETools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTLETools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0072F45150912B100C96ADC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B0072F47150912B100C96ADC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,8 +54,6 @@
 		B0072F62150912CA00C96ADC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		B013711118ED6A8100F35365 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		B013711418ED6A9A00F35365 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		B013711618ED6C2600F35365 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		B013711718ED6C2600F35365 /* libFlurry_4.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.4.0.a; sourceTree = "<group>"; };
 		B013711918ED6C9000F35365 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B013711B18ED6C9700F35365 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B013711F18ED719900F35365 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -71,7 +71,6 @@
 		B053F6A71534B90C00DD1047 /* BTLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEDevice.h; sourceTree = "<group>"; };
 		B053F6A81534B90C00DD1047 /* BTLEDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEDevice.m; sourceTree = "<group>"; };
 		B0542A5C1663596F001A7048 /* CharacteristicDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacteristicDelegate.h; sourceTree = "<group>"; };
-		B05A7BC319B9B04500C3E2BE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		B09791F21535698500AAD130 /* CharacteristicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicViewController.h; sourceTree = "<group>"; };
 		B09791F31535698500AAD130 /* CharacteristicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicViewController.m; sourceTree = "<group>"; };
 		B0B5FADF1534A90700701B76 /* ServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesViewController.h; sourceTree = "<group>"; };
@@ -93,12 +92,11 @@
 			files = (
 				B013711C18ED6C9700F35365 /* Security.framework in Frameworks */,
 				B013711A18ED6C9000F35365 /* SystemConfiguration.framework in Frameworks */,
-				B05A7BC419B9B04500C3E2BE /* Crashlytics.framework in Frameworks */,
 				B0072F63150912CA00C96ADC /* CoreBluetooth.framework in Frameworks */,
 				B0072F46150912B100C96ADC /* UIKit.framework in Frameworks */,
-				B013711818ED6C2600F35365 /* libFlurry_4.4.0.a in Frameworks */,
 				B0072F48150912B100C96ADC /* Foundation.framework in Frameworks */,
 				B0072F4A150912B100C96ADC /* CoreGraphics.framework in Frameworks */,
+				F6497B248FA0BF99D6A69F7A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,10 +106,10 @@
 		B0072F36150912B100C96ADC = {
 			isa = PBXGroup;
 			children = (
-				B0F4A54D16D797ED003DF071 /* FlurryAnalytics */,
 				B0072F4B150912B100C96ADC /* BTLETest */,
 				B0072F44150912B100C96ADC /* Frameworks */,
 				B0072F42150912B100C96ADC /* Products */,
+				E9BDB8B36D6242231A93D384 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,13 +124,13 @@
 		B0072F44150912B100C96ADC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B05A7BC319B9B04500C3E2BE /* Crashlytics.framework */,
 				B013711B18ED6C9700F35365 /* Security.framework */,
 				B013711918ED6C9000F35365 /* SystemConfiguration.framework */,
 				B0072F62150912CA00C96ADC /* CoreBluetooth.framework */,
 				B0072F45150912B100C96ADC /* UIKit.framework */,
 				B0072F47150912B100C96ADC /* Foundation.framework */,
 				B0072F49150912B100C96ADC /* CoreGraphics.framework */,
+				087DF1E62591DB720050CBFA /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -203,13 +201,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		B0F4A54D16D797ED003DF071 /* FlurryAnalytics */ = {
+		E9BDB8B36D6242231A93D384 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B013711618ED6C2600F35365 /* Flurry.h */,
-				B013711718ED6C2600F35365 /* libFlurry_4.4.0.a */,
+				2E42617BCA7186F363F42834 /* Pods.debug.xcconfig */,
+				4C780DCF7F7AF1DA5B19097B /* Pods.release.xcconfig */,
 			);
-			path = FlurryAnalytics;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,10 +217,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0072F5F150912B200C96ADC /* Build configuration list for PBXNativeTarget "BTLETools" */;
 			buildPhases = (
+				F510C21F31C663F619FA946A /* Check Pods Manifest.lock */,
 				B0072F3D150912B100C96ADC /* Sources */,
 				B0072F3E150912B100C96ADC /* Frameworks */,
 				B0072F3F150912B100C96ADC /* Resources */,
-				B05A7BC219B9B01F00C3E2BE /* ShellScript */,
+				B01C82331BA2FA75005329B0 /* ShellScript */,
+				953C7AEA0DEF682046E8536D /* Copy Pods Resources */,
+				B0D222001BA2FCB9005DEAA9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -239,10 +240,10 @@
 		B0072F38150912B100C96ADC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					B0072F40150912B100C96ADC = {
-						DevelopmentTeam = BSZZ2WXHJP;
+						DevelopmentTeam = 26RU4S44ET;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -289,7 +290,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B05A7BC219B9B01F00C3E2BE /* ShellScript */ = {
+		953C7AEA0DEF682046E8536D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B01C82331BA2FA75005329B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
+		B0D222001BA2FCB9005DEAA9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,7 +329,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 716076147201bc2037ed37e6095dcd6cb83521a8 982566b6182982208d06a003ed7f815af5c0daba17f161a6e2b741f461ea605e";
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
+		F510C21F31C663F619FA946A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -346,11 +390,15 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -380,10 +428,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -401,12 +452,14 @@
 		};
 		B0072F60150912B200C96ADC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E42617BCA7186F363F42834 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -415,11 +468,8 @@
 				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
 				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryAnalytics\"",
-					"$(PROJECT_DIR)/FlurryAnalytics",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.studiosophisti.btletools;
 				PRODUCT_NAME = BTLETools;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -429,12 +479,14 @@
 		};
 		B0072F61150912B200C96ADC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C780DCF7F7AF1DA5B19097B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Studio Sophisti (26RU4S44ET)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -443,14 +495,11 @@
 				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
 				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryAnalytics\"",
-					"$(PROJECT_DIR)/FlurryAnalytics",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.studiosophisti.btletools;
 				PRODUCT_NAME = BTLETools;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "262d976d-bc2a-4b84-b1cb-e9303c97ebbe";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

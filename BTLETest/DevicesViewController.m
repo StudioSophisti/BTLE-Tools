@@ -108,9 +108,6 @@
     
     [manager stopScan];
     
-    //check if other apps are connected
-    [manager retrieveConnectedPeripherals];
-        
     [manager scanForPeripheralsWithServices:nil options:nil];
     
     scanTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(actionStopScanning) userInfo:nil repeats:NO];

@@ -10,20 +10,18 @@
 #import "ServicesViewController.h"
 #import "DevicesViewController.h"
 #import "BTLEDevice.h"
-#import "Flurry.h"
-#import <Crashlytics/Crashlytics.h>
+#import <HockeySDK/HockeySDK.h>
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#ifndef DEBUG
-    [Flurry setCrashReportingEnabled:YES];
-    [Flurry startSession:@"GQTXKK8BGM7N9NFJFM78"];
-    
-    [Crashlytics startWithAPIKey:@"716076147201bc2037ed37e6095dcd6cb83521a8"];
-#endif
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"d1e844d114fb9996c9c435844351a4c9"];
+    // Do some additional configuration if needed here
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator
+     authenticateInstallation];
     
     return YES;
 }
