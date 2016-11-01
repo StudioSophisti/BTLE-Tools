@@ -71,7 +71,7 @@
         
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionChanged) name:@"connection_changed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnected) name:@"disconnected" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -80,12 +80,8 @@
     [lblLive setText:@"Live updating"];
 }
 
-- (void)connectionChanged {
-    if (characteristic.service.peripheral.state == CBPeripheralStateDisconnected) {
-        lblName.text = @"Disconnected";
-    }
-    
-    [self.tableView reloadData];
+- (void)disconnected {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updatedValue {
@@ -148,34 +144,45 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section > 0) return 44;
+    if (indexPath.section > 0) return defaultCellHeight;
     
     else if (indexPath.row == 0) {
         UIFont *cellFont = [UIFont boldSystemFontOfSize:18];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-        CGSize labelSize = [lblName.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize labelSize = [lblName.text boundingRectWithSize:constraintSize
+                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                               attributes:@{NSFontAttributeName:cellFont}
+                                                  context:nil].size;
         return labelSize.height + 20;
     
     } else if (indexPath.row == 1) {
-        UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-        CGSize labelSize = [lblValue.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
+        CGSize labelSize = [lblValue.text boundingRectWithSize:constraintSize
+                                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                   attributes:@{NSFontAttributeName:CELL_TITLE_FONT}
+                                                      context:nil].size;
         return labelSize.height + 20;
         
     } else if (indexPath.row == 2) {
         UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-        CGSize labelSize = [lblAscii.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
+        CGSize labelSize = [lblAscii.text boundingRectWithSize:constraintSize
+                                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                   attributes:@{NSFontAttributeName:cellFont}
+                                                      context:nil].size;
         return labelSize.height + 20;
         
     } else if (indexPath.row == 3) {
         UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-        CGSize labelSize = [lblProperties.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize labelSize = [lblProperties.text boundingRectWithSize:constraintSize
+                                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                   attributes:@{NSFontAttributeName:cellFont}
+                                                      context:nil].size;
         return labelSize.height + 20;
         
     } else {
-        return 44;
+        return defaultCellHeight;
     }
     
     
@@ -241,12 +248,9 @@
         [txtSend resignFirstResponder];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Format error" 
-                                   message:@"Please match the following formatting: 'ff:ff:ff:ff:...'" 
-                                  delegate:nil 
-                         cancelButtonTitle:@"OK" 
-                          otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Format error" message:@"Please match the following formatting: 'ff:ff:ff:ff:...'"  preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:true completion:nil];
     }
 }
 

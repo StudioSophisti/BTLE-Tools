@@ -37,6 +37,8 @@
 
 #pragma mark - UISplitViewControllerDeletate
 
+#ifndef TARGET_TV
+
 - (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
     return NO;
 }
@@ -47,5 +49,7 @@
     [[svc.viewControllers objectAtIndex:1] topViewController].navigationItem.leftBarButtonItem = barButtonItem;
     
 }
+
+#endif
 
 @end

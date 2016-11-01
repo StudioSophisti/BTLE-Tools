@@ -10,18 +10,23 @@
 #import "ServicesViewController.h"
 #import "DevicesViewController.h"
 #import "BTLEDevice.h"
+
+#ifndef TARGET_TV
 #import <HockeySDK/HockeySDK.h>
+#endif
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifndef TARGET_TV
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"d1e844d114fb9996c9c435844351a4c9"];
     // Do some additional configuration if needed here
     [[BITHockeyManager sharedHockeyManager] startManager];
     [[BITHockeyManager sharedHockeyManager].authenticator
      authenticateInstallation];
+#endif
     
     return YES;
 }

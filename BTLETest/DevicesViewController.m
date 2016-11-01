@@ -26,7 +26,7 @@
 
     self.title = @"BLE Scan Results";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionScan)];
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionScan)];
     
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRSSI) userInfo:nil repeats:YES];
     
@@ -56,6 +56,8 @@
     scanning = NO;
     [manager stopScan];
 
+    [self actionScan];
+    
     [self.tableView reloadData];
 }
 
@@ -84,12 +86,11 @@
 - (void)actionScan {
     
     if (manager.state == CBCentralManagerStatePoweredOff) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth disabled" 
-                                                         message:@"Please enable Bluetooth in your device settings to use this app." 
-                                                        delegate:nil 
-                                               cancelButtonTitle:@"OK" 
-                                               otherButtonTitles:nil];
-        [alert show];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bluetooth disabled" message:@"Please enable Bluetooth in your device settings to use this app." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:true completion:nil];
+        
         return;
     }
     
@@ -138,12 +139,20 @@
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
 										   reuseIdentifier:loadingIdentifier];
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc]
+            
+#ifdef TARGET_TV
+            UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc]
+                                                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            loadingView.tintColor = [UIColor lightGrayColor];
+#else
+            UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc]
                                                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+#endif
             loadingView.tag = 8;
+            cell.userInteractionEnabled = NO;
 			[cell.contentView addSubview:loadingView];
 		}
-        [(UIActivityIndicatorView*)[cell viewWithTag:8] setCenter: CGPointMake(self.view.frame.size.width / 2, 22)];
+        [(UIActivityIndicatorView*)[cell viewWithTag:8] setCenter: CGPointMake(self.view.frame.size.width / 2, bigCellHeight / 2)];
         [(UIActivityIndicatorView*)[cell viewWithTag:8] startAnimating];
 		return cell;
     }
@@ -170,7 +179,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return bigCellHeight;
 }
 
 
@@ -179,6 +188,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+#ifdef TARGET_TV
+    [[self.splitViewController.viewControllers objectAtIndex:1] setViewControllers:[NSArray arrayWithObject:deviceVc]];
+    deviceVc.device = [devices objectAtIndex:indexPath.row];
+    [deviceVc updateViews];
+    deviceVc.title = [deviceVc.device name];
+#else
     
     if (IS_IPAD) {
         [[self.splitViewController.viewControllers objectAtIndex:1] setViewControllers:[NSArray arrayWithObject:deviceVc]];
@@ -192,6 +208,7 @@
         [self.navigationController pushViewController:deviceVc animated:YES];
     }
     
+#endif
 }
 
 
@@ -247,7 +264,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"Periphiral connected: %@", peripheral.name);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"connection_changed" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"connected" object:nil];
         
     [self.tableView reloadData];
 }
@@ -255,7 +272,7 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
      NSLog(@"Periphiral disconnected: %@", peripheral.name);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"connection_changed" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"disconnected" object:nil];
     
     [self.tableView reloadData];
     
@@ -264,12 +281,9 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Periphiral failed to connect: %@", peripheral.name);
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to connect" 
-                                                    message:error.localizedDescription 
-                                                   delegate:nil 
-                                          cancelButtonTitle:@"OK" 
-                                           otherButtonTitles:nil];
-    [alert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed to connect" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:true completion:nil];
 }
 
 @end

@@ -24,11 +24,14 @@
 {
     [super viewDidLoad];
     
+#ifndef TARGET_TV
     self.title = @"Device Data";
+#endif
     
     [self updateLabels];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViews) name:@"connection_changed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViews) name:@"connected" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViews) name:@"disconnected" object:nil];
 }
 
 - (void)updateLabels {
@@ -64,7 +67,12 @@
         
     } else if (_device.peripheralRef.state == CBPeripheralStateConnecting) {
         
+#ifdef TARGET_TV
+        connectCell.accessoryView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        connectCell.accessoryView .tintColor = [UIColor lightGrayColor];
+#else
         connectCell.accessoryView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+#endif
         [(UIActivityIndicatorView*)connectCell.accessoryView startAnimating];
         connectCell.textLabel.text = @"Connecting...";
         
@@ -111,7 +119,7 @@
         
         ServicesViewController *servicesVc = nil;
         
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:defaultStoryboard bundle:nil];
         servicesVc = [sb instantiateViewControllerWithIdentifier:@"servicesViewController"];
             
         [self.navigationController pushViewController:servicesVc animated:YES];        
@@ -128,25 +136,31 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0 && indexPath.row == 1) {
-        UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-        CGSize labelSize = [lblUUID.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize labelSize = [lblUUID.text boundingRectWithSize:constraintSize
+                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                               attributes:@{NSFontAttributeName:CELL_TITLE_FONT}
+                                                  context:nil].size;
         return labelSize.height + 20;
         
     } else if (indexPath.section == 2 && indexPath.row == 0) {
-        UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-        CGSize labelSize = [lblServices.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize labelSize = [lblServices.text boundingRectWithSize:constraintSize
+                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                               attributes:@{NSFontAttributeName:CELL_TITLE_FONT}
+                                                  context:nil].size;
         return labelSize.height + 20;
         
     } else if (indexPath.section == 2 && indexPath.row == 1) {
-        UIFont *cellFont = [UIFont systemFontOfSize:16];
         CGSize constraintSize = CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT);
-        CGSize labelSize = [lblData.text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize labelSize = [lblData.text boundingRectWithSize:constraintSize
+                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                               attributes:@{NSFontAttributeName:CELL_TITLE_FONT}
+                                                  context:nil].size;
         return labelSize.height + 20;
         
     } else {
-        return 44;
+        return defaultCellHeight;
     }
     
     
