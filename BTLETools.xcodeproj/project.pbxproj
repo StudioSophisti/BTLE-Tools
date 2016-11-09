@@ -64,16 +64,9 @@
 		B0FFBD6A1DD31B7D00DBD0D1 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFBD691DD31B7D00DBD0D1 /* LogViewController.swift */; };
 		B0FFBD6C1DD31C0D00DBD0D1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFBD6B1DD31C0D00DBD0D1 /* Logger.swift */; };
 		B0FFBD6F1DD3227500DBD0D1 /* NSData+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FFBD6E1DD3227500DBD0D1 /* NSData+Description.m */; };
-		F6497B248FA0BF99D6A69F7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 087DF1E62591DB720050CBFA /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		087DF1E62591DB720050CBFA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		245797E40AC76D145162C534 /* libPods-BTLEToolsTV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTLEToolsTV.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E42617BCA7186F363F42834 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		4C780DCF7F7AF1DA5B19097B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		7E19DF9C0E7FBD571DF5898D /* libPods-BTLETools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTLETools.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		956A769A44CA6E211FB2EA93 /* Pods-BTLEToolsTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTLEToolsTV.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTLEToolsTV/Pods-BTLEToolsTV.release.xcconfig"; sourceTree = "<group>"; };
 		B0072F41150912B100C96ADC /* BTLETools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTLETools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0072F45150912B100C96ADC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B0072F47150912B100C96ADC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,7 +123,6 @@
 		B0FFBD6B1DD31C0D00DBD0D1 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B0FFBD6D1DD3227500DBD0D1 /* NSData+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Description.h"; sourceTree = "<group>"; };
 		B0FFBD6E1DD3227500DBD0D1 /* NSData+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Description.m"; sourceTree = "<group>"; };
-		DF9AC7413B460A79EBA1DAC4 /* Pods-BTLEToolsTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTLEToolsTV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BTLEToolsTV/Pods-BTLEToolsTV.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +136,6 @@
 				B0072F46150912B100C96ADC /* UIKit.framework in Frameworks */,
 				B0072F48150912B100C96ADC /* Foundation.framework in Frameworks */,
 				B0072F4A150912B100C96ADC /* CoreGraphics.framework in Frameworks */,
-				F6497B248FA0BF99D6A69F7A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +162,6 @@
 				B0AB3A661BAD82BE0096CC51 /* nl.studiosophisti.btletools */,
 				B0072F44150912B100C96ADC /* Frameworks */,
 				B0072F42150912B100C96ADC /* Products */,
-				E9BDB8B36D6242231A93D384 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,9 +185,6 @@
 				B0072F45150912B100C96ADC /* UIKit.framework */,
 				B0072F47150912B100C96ADC /* Foundation.framework */,
 				B0072F49150912B100C96ADC /* CoreGraphics.framework */,
-				087DF1E62591DB720050CBFA /* libPods.a */,
-				7E19DF9C0E7FBD571DF5898D /* libPods-BTLETools.a */,
-				245797E40AC76D145162C534 /* libPods-BTLEToolsTV.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -294,17 +281,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E9BDB8B36D6242231A93D384 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2E42617BCA7186F363F42834 /* Pods.debug.xcconfig */,
-				4C780DCF7F7AF1DA5B19097B /* Pods.release.xcconfig */,
-				DF9AC7413B460A79EBA1DAC4 /* Pods-BTLEToolsTV.debug.xcconfig */,
-				956A769A44CA6E211FB2EA93 /* Pods-BTLEToolsTV.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,12 +288,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0072F5F150912B200C96ADC /* Build configuration list for PBXNativeTarget "BTLETools" */;
 			buildPhases = (
-				F510C21F31C663F619FA946A /* Check Pods Manifest.lock */,
 				B0072F3D150912B100C96ADC /* Sources */,
 				B0072F3E150912B100C96ADC /* Frameworks */,
 				B0072F3F150912B100C96ADC /* Resources */,
 				B01C82331BA2FA75005329B0 /* ShellScript */,
-				953C7AEA0DEF682046E8536D /* Copy Pods Resources */,
 				B0D222001BA2FCB9005DEAA9 /* ShellScript */,
 			);
 			buildRules = (
@@ -427,21 +401,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		953C7AEA0DEF682046E8536D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B01C82331BA2FA75005329B0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -480,21 +439,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
-		};
-		F510C21F31C663F619FA946A /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -628,7 +572,6 @@
 		};
 		B0072F60150912B200C96ADC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E42617BCA7186F363F42834 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -659,7 +602,6 @@
 		};
 		B0072F61150912B200C96ADC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C780DCF7F7AF1DA5B19097B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

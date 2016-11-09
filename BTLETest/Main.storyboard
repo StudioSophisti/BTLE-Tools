@@ -300,7 +300,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Log" id="pZp-Nh-Jfx">
                         <rightBarButtonItems>
-                            <barButtonItem title="Export" id="hZC-hp-vTC">
+                            <barButtonItem title="Export" style="done" id="hZC-hp-vTC">
                                 <connections>
                                     <action selector="actionExport:" destination="8el-Hg-GXH" id="lkS-0D-LUd"/>
                                 </connections>
