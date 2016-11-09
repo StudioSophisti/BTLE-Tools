@@ -8,6 +8,7 @@
 
 #import "CharacteristicViewController.h"
 #import "CBCharacteristic+Description.h"
+#import "BTLETools-Swift.h"
 
 @interface CharacteristicViewController ()
 
@@ -246,6 +247,8 @@
             [characteristic.service.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
         
         [txtSend resignFirstResponder];
+        
+        [[Logger shared] appendWithDevice:characteristic.service.peripheral event:EventDataSend service:characteristic.service characteristic:characteristic data:data];
         
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Format error" message:@"Please match the following formatting: 'ff:ff:ff:ff:...'"  preferredStyle:UIAlertControllerStyleAlert];

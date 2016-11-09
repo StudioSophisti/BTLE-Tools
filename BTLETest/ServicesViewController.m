@@ -11,6 +11,7 @@
 #import "CharacteristicViewController.h"
 #import "CBService+Description.h"
 #import "CBCharacteristic+Description.h"
+#import "BTLETools-Swift.h"
 
 @interface ServicesViewController ()
 
@@ -205,6 +206,8 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     NSLog(@"Incoming: %@", [characteristic asciiString]);
+    
+    [[Logger shared] appendWithDevice:peripheral event:EventDataReceived service:characteristic.service characteristic:characteristic data:characteristic.value];
     
     [self.tableView reloadData];
     

@@ -10,6 +10,7 @@
 #import "DeviceViewController.h"
 #import "ServicesViewController.h"
 #import "BTLEDevice.h"
+#import "BTLETools-Swift.h"
 
 @interface DevicesViewController ()
 - (void)actionScan;
@@ -24,7 +25,7 @@
     manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     devices = [NSMutableArray arrayWithCapacity:10];
 
-    self.title = @"BLE Scan Results";
+    self.title = @"Scan";
     
     //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionScan)];
     
@@ -35,6 +36,14 @@
     
     deviceVc = (DeviceViewController*)[[(UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:1]
                                             viewControllers] objectAtIndex:0];
+    
+    //load all views
+    for (UIViewController *vc in self.tabBarController.viewControllers) {
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            UIView *view = ((UINavigationController*)vc).topViewController.view;
+            [view description];
+        }        
+    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -264,6 +273,8 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"Periphiral connected: %@", peripheral.name);
     
+    [[Logger shared] appendWithDevice:peripheral event:EventConnected service:nil characteristic:nil data:nil];
+        
     [[NSNotificationCenter defaultCenter] postNotificationName:@"connected" object:nil];
         
     [self.tableView reloadData];
@@ -271,6 +282,8 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
      NSLog(@"Periphiral disconnected: %@", peripheral.name);
+    
+    [[Logger shared] appendWithDevice:peripheral event:EventDisconnected service:nil characteristic:nil data:nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"disconnected" object:nil];
     

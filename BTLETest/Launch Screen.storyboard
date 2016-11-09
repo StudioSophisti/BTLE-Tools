@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="r22-oX-Ru1">
-                                <rect key="frame" x="20" y="263.66666666666669" width="374" height="209"/>
+                                <rect key="frame" x="20" y="264" width="374" height="209"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="209" id="3cH-qf-MMd"/>
                                     <constraint firstAttribute="height" constant="180" id="BFI-6a-Xmu"/>

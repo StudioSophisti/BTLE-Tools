@@ -60,6 +60,10 @@
 		B0DADAE816545585001C59FA /* CBService+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DADAE716545585001C59FA /* CBService+Description.m */; };
 		B0DADAF21654594D001C59FA /* CBCharacteristic+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */; };
 		B0FFBD651DD2F02000DBD0D1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0FFBD641DD2F02000DBD0D1 /* Launch Screen.storyboard */; };
+		B0FFBD681DD319B000DBD0D1 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFBD671DD319B000DBD0D1 /* InfoViewController.swift */; };
+		B0FFBD6A1DD31B7D00DBD0D1 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFBD691DD31B7D00DBD0D1 /* LogViewController.swift */; };
+		B0FFBD6C1DD31C0D00DBD0D1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFBD6B1DD31C0D00DBD0D1 /* Logger.swift */; };
+		B0FFBD6F1DD3227500DBD0D1 /* NSData+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FFBD6E1DD3227500DBD0D1 /* NSData+Description.m */; };
 		F6497B248FA0BF99D6A69F7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 087DF1E62591DB720050CBFA /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +124,12 @@
 		B0DADAF01654594D001C59FA /* CBCharacteristic+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBCharacteristic+Description.h"; sourceTree = "<group>"; };
 		B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBCharacteristic+Description.m"; sourceTree = "<group>"; };
 		B0FFBD641DD2F02000DBD0D1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		B0FFBD661DD319AF00DBD0D1 /* BTLETools-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BTLETools-Bridging-Header.h"; sourceTree = "<group>"; };
+		B0FFBD671DD319B000DBD0D1 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		B0FFBD691DD31B7D00DBD0D1 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
+		B0FFBD6B1DD31C0D00DBD0D1 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B0FFBD6D1DD3227500DBD0D1 /* NSData+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Description.h"; sourceTree = "<group>"; };
+		B0FFBD6E1DD3227500DBD0D1 /* NSData+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Description.m"; sourceTree = "<group>"; };
 		DF9AC7413B460A79EBA1DAC4 /* Pods-BTLEToolsTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTLEToolsTV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BTLEToolsTV/Pods-BTLEToolsTV.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,10 +225,16 @@
 				B0DADAE716545585001C59FA /* CBService+Description.m */,
 				B0DADAF01654594D001C59FA /* CBCharacteristic+Description.h */,
 				B0DADAF11654594D001C59FA /* CBCharacteristic+Description.m */,
+				B0FFBD6D1DD3227500DBD0D1 /* NSData+Description.h */,
+				B0FFBD6E1DD3227500DBD0D1 /* NSData+Description.m */,
 				B013712B18EDAF7900F35365 /* BTSplitViewDelegate.h */,
 				B013712C18EDAF7900F35365 /* BTSplitViewDelegate.m */,
 				B013713018EEB99B00F35365 /* CBUUID+String.h */,
 				B013713118EEB99B00F35365 /* CBUUID+String.m */,
+				B0FFBD671DD319B000DBD0D1 /* InfoViewController.swift */,
+				B0FFBD661DD319AF00DBD0D1 /* BTLETools-Bridging-Header.h */,
+				B0FFBD691DD31B7D00DBD0D1 /* LogViewController.swift */,
+				B0FFBD6B1DD31C0D00DBD0D1 /* Logger.swift */,
 			);
 			path = BTLETest;
 			sourceTree = "<group>";
@@ -341,6 +357,7 @@
 				TargetAttributes = {
 					B0072F40150912B100C96ADC = {
 						DevelopmentTeam = 26RU4S44ET;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -486,9 +503,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FFBD6F1DD3227500DBD0D1 /* NSData+Description.m in Sources */,
 				B0072F52150912B100C96ADC /* main.m in Sources */,
 				B0072F56150912B100C96ADC /* AppDelegate.m in Sources */,
 				B0B5FAE11534A90700701B76 /* ServicesViewController.m in Sources */,
+				B0FFBD6A1DD31B7D00DBD0D1 /* LogViewController.swift in Sources */,
 				B0B5FAE41534A95E00701B76 /* DevicesViewController.m in Sources */,
 				B053F6A41534B46500DD1047 /* DeviceViewController.m in Sources */,
 				B053F6A91534B90C00DD1047 /* BTLEDevice.m in Sources */,
@@ -496,6 +515,8 @@
 				B013713218EEB99B00F35365 /* CBUUID+String.m in Sources */,
 				B0DADAE816545585001C59FA /* CBService+Description.m in Sources */,
 				B0DADAF21654594D001C59FA /* CBCharacteristic+Description.m in Sources */,
+				B0FFBD6C1DD31C0D00DBD0D1 /* Logger.swift in Sources */,
+				B0FFBD681DD319B000DBD0D1 /* InfoViewController.swift in Sources */,
 				B013712D18EDAF7900F35365 /* BTSplitViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,7 +631,7 @@
 			baseConfigurationReference = 2E42617BCA7186F363F42834 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -623,10 +644,14 @@
 				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
 				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.studiosophisti.btletools;
 				PRODUCT_NAME = BTLETools;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTLETest/BTLETools-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -637,7 +662,7 @@
 			baseConfigurationReference = 4C780DCF7F7AF1DA5B19097B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -650,11 +675,14 @@
 				GCC_PREFIX_HEADER = "BTLETest/BTLETools-Prefix.pch";
 				INFOPLIST_FILE = "BTLETest/BTLETools-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.studiosophisti.btletools;
 				PRODUCT_NAME = BTLETools;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "262d976d-bc2a-4b84-b1cb-e9303c97ebbe";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTLETest/BTLETools-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

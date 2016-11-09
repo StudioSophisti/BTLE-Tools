@@ -60,9 +60,9 @@
 - (NSString*)name {
     NSString *deviceName = nil;
     
-    if ((deviceName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey]) && [deviceName length]) {
+    if ((deviceName = [peripheralRef name]) && [deviceName length]) {
         return deviceName;
-    } else if ((deviceName = [peripheralRef name]) && [deviceName length]) {
+    } else if ((deviceName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey]) && [deviceName length]) {
         return deviceName;
     }
     return @"<no name>";
